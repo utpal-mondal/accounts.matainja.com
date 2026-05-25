@@ -1,0 +1,12 @@
+cExifMM*
+
+(2i~RaspberryPiRP_ov5647HH2018:03:03 17:01:02ڂ"'d0220
+
+"* 
+2|2:0100lLB@q8'2018:03:03 17:01:022018:03:03 17:01:02jAB@w'dw''ev=-1 mlux=-1 exp=8012 ag=256 focus=255 gain_r=1.000 gain_b=1.000 greenness=0 ccm=0,0,0,0,0,0,0,0,0,0,0,0 md=0 tg=264 264 oth=0 0 b=0 f=264 264 fi=0 ISP Build Date: Oct 24 2017, 17:12:33 VC_BUILD_ID_VERSION: a3d7660e6749e75e2c4ce4d377846abd3b3be283 (clean) VC_BUILD_ID_USER: dc4 VC_BUILD_ID_BRANCH: master R98@0(`HH 
+  
+
+
+0@" 
+}!1AQa"q2#BR$3br 
+%
