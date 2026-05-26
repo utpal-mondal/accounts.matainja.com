@@ -1908,8 +1908,8 @@ class Sales extends MY_Controller
         $this->sma->checkPermissions('payments', true);
         $payment = $this->sales_model->getPaymentByID($id);
         $inv = $this->sales_model->getInvoiceByID($payment->sale_id);
-        $this->data['biller'] = $this->site->getCompanyByID($inv->biller_id);
-        $this->data['customer'] = $this->site->getCompanyByID($inv->customer_id);
+        $this->data['biller'] = $inv ? $this->site->getCompanyByID($inv->biller_id) : false;
+        $this->data['customer'] = $inv ? $this->site->getCompanyByID($inv->customer_id) : false;
         $this->data['inv'] = $inv;
         $this->data['payment'] = $payment;
         $this->data['page_title'] = $this->lang->line("payment_note");

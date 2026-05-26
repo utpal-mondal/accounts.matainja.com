@@ -1292,16 +1292,14 @@ class Reports extends MY_Controller
                     );
                     $this->excel->getDefaultStyle()->applyFromArray($styleArray);
                     $this->excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
-                    
+
                     // require_once(APPPATH . "third_party" . DIRECTORY_SEPARATOR . "MPDF" . DIRECTORY_SEPARATOR . "mpdf.php");
 
                     require_once MPDF;
 
-                    $rendererLibraryPath = new \Mpdf\Mpdf (['mode' => 'utf-8']);
+                    $rendererLibrary = 'MPDF';
+                    $rendererLibraryPath = APPPATH . 'third_party' . DIRECTORY_SEPARATOR . $rendererLibrary;
                     $rendererName = PHPExcel_Settings::PDF_RENDERER_MPDF;
-                    
-                    /*$rendererLibrary = 'MPDF';
-                    $rendererLibraryPath = APPPATH . 'third_party' . DIRECTORY_SEPARATOR . $rendererLibrary;*/
 
                     if (!PHPExcel_Settings::setPdfRenderer($rendererName, $rendererLibraryPath)) {
                         die('Please set the $rendererName: ' . $rendererName . ' and $rendererLibraryPath: ' . $rendererLibraryPath . ' values' .

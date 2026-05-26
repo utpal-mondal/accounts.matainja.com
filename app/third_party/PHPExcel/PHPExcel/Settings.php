@@ -322,7 +322,7 @@ class PHPExcel_Settings
      */
     public static function setPdfRendererPath($libraryBaseDir)
     {
-        if ((file_exists($libraryBaseDir) === false) || (is_readable($libraryBaseDir) === false)) {
+        if (!is_string($libraryBaseDir) || (file_exists($libraryBaseDir) === false) || (is_readable($libraryBaseDir) === false)) {
             return FALSE;
         }
         self::$_pdfRendererPath = $libraryBaseDir;

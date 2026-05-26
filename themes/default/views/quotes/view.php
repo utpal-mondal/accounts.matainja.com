@@ -277,12 +277,12 @@
                     <div class="col-xs-4 col-xs-offset-1">
                         <div class="well well-sm">
                             <p><?= lang("created_by"); ?>
-                                : <?= $created_by->first_name . ' ' . $created_by->last_name; ?> </p>
+                                : <?= $created_by ? $created_by->first_name . ' ' . $created_by->last_name : '-'; ?> </p>
 
                             <p><?= lang("date"); ?>: <?= $this->sma->hrld($inv->date); ?></p>
                             <?php if ($inv->updated_by) { ?>
                                 <p><?= lang("updated_by"); ?>
-                                    : <?= $updated_by->first_name . ' ' . $updated_by->last_name;; ?></p>
+                                    : <?= $updated_by ? $updated_by->first_name . ' ' . $updated_by->last_name : '-'; ?></p>
                                 <p><?= lang("update_at"); ?>: <?= $this->sma->hrld($inv->updated_at); ?></p>
                             <?php } ?>
                         </div>

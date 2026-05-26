@@ -984,7 +984,7 @@
 
 
 
-                        <?php if ($paypal->active == "1" && $inv->grand_total != "0.00") {
+                       <?php if (isset($paypal->active) && $paypal->active == "1" && $inv->grand_total != "0.00") { 
 
                             if (trim(strtolower($customer->country)) == $biller->country) {
 

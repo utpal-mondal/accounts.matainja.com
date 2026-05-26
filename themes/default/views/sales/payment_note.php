@@ -11,7 +11,7 @@
         <div class="modal-body print">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-2x">&times;</i>
             </button>
-            <?php if ($logo) { ?>
+            <?php if ($logo && $biller) { ?>
                 <!--<div class="text-center" style="margin-bottom:20px;">-->
                 <img src="<?= base_url() . 'assets/uploads/logos/' . $biller->logo; ?>"
                      alt="<?= $biller->company != '-' ? $biller->company : $biller->name; ?>">
@@ -20,6 +20,7 @@
             <div class="clearfix"></div>
             <div class="row padding10">
                 <div class="col-xs-5">
+                    <?php if ($biller) { ?>
                     <h2 class=""><?= $biller->company != '-' ? $biller->company : $biller->name; ?></h2>
                     <?= $biller->company ? "" : "Attn: " . $biller->name ?>
                     <?php
@@ -46,9 +47,11 @@
                     echo "</p>";
                     echo lang("tel") . ": " . $biller->phone . "<br />" . lang("email") . ": " . $biller->email;
                     ?>
+                    <?php } ?>
                     <div class="clearfix"></div>
                 </div>
                 <div class="col-xs-5">
+                    <?php if ($customer) { ?>
                     <h2 class=""><?= $customer->company ? $customer->company : $customer->name; ?></h2>
                     <?= $customer->company ? "" : "Attn: " . $customer->name ?>
                     <?php
@@ -75,6 +78,7 @@
                     echo "</p>";
                     echo lang("tel") . ": " . $customer->phone . "<br />" . lang("email") . ": " . $customer->email;
                     ?>
+                    <?php } ?>
 
                 </div>
             </div>
