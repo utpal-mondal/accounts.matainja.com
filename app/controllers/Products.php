@@ -94,7 +94,7 @@ class Products extends MY_Controller
 
 
 
-        if ((! $this->Owner || ! $this->Admin) && ! $warehouse_id) {
+        if ((! $this->Owner && ! $this->Admin) && ! $warehouse_id) {
 
             $user = $this->site->getUser();
 
@@ -192,7 +192,7 @@ class Products extends MY_Controller
 
             $this->datatables
 
-               ->select($this->db->dbprefix('products') . ".id as productid,{$this->db->dbprefix('products')}.code as code, {$this->db->dbprefix('products')}.name as name, price as price, COALESCE(quantity, 0) as quantity", FALSE)
+               ->select($this->db->dbprefix('products') . ".id as productid,{$this->db->dbprefix('products')}.code as code, {$this->db->dbprefix('products')}.name as name, price as price, COALESCE((SELECT SUM(quantity) FROM {$this->db->dbprefix('warehouses_products')} WHERE product_id = {$this->db->dbprefix('products')}.id), 0) as quantity", FALSE)
 
                 ->from('products')
 
@@ -4197,7 +4197,7 @@ class Products extends MY_Controller
 
 
 
-        if ((! $this->Owner || ! $this->Admin) && ! $warehouse_id) {
+        if ((! $this->Owner && ! $this->Admin) && ! $warehouse_id) {
 
             $user = $this->site->getUser();
 

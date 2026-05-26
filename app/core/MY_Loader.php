@@ -30,6 +30,7 @@ class MY_Loader extends CI_Loader{
     public $invoice_model;
     public $reports_model;
     public $calendar;
+    public $zend;
         
     function __construct()
     {

@@ -61,6 +61,7 @@ class MY_Controller extends CI_Controller {
     public $invoice_model;
     public $reports_model;
     public $calendar;
+    public $zend;
     
     function __construct()
     {

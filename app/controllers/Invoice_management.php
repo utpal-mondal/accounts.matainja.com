@@ -77,7 +77,7 @@ class Invoice_management extends MY_Controller
 
 
 
-        if ((!$this->Owner || !$this->Admin)) {
+        if ((!$this->Owner && !$this->Admin)) {
 
             $user = $this->site->getUser();
 
@@ -126,7 +126,7 @@ class Invoice_management extends MY_Controller
 
         $this->load->library('datatables');
 
-        $this->datatables->select("id, DATE_FORMAT(date, '%Y-%m-%d %T') as date, reference_no, biller, customer, currency, total_amount")->from('sma_invoice');
+        $this->datatables->select("id, DATE_FORMAT(date, '%Y-%m-%d %T') as date, reference_no, biller, customer, currency, total_amount")->from('sma_invoices');
 
         //}
 

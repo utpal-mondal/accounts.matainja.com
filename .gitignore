@@ -4,8 +4,14 @@
 /application/cache/*
 !/application/cache/index.html
 
+/app/cache/*
+!/app/cache/index.html
+
 /application/logs/*
 !/application/logs/index.html
+
+/app/logs/*
+!/app/logs/index.html
 
 /uploads/*
 !.gitkeep
@@ -21,4 +27,6 @@ Thumbs.db
 
 /public/uploads/
 
-assets/captcha/*
+/assets/captcha/*
+
+

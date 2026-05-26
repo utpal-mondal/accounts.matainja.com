@@ -104,7 +104,7 @@ class Reverse_management extends MY_Controller
 
 
 
-        if ((!$this->Owner || !$this->Admin) && !$warehouse_id) {
+        if ((!$this->Owner && !$this->Admin) && !$warehouse_id) {
 
             $user = $this->site->getUser();
 

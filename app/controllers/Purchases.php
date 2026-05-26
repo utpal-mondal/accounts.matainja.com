@@ -59,7 +59,7 @@ class Purchases extends MY_Controller
     {
         $this->sma->checkPermissions('index');
 
-        if ((!$this->Owner || !$this->Admin) && !$warehouse_id) {
+        if ((!$this->Owner && !$this->Admin) && !$warehouse_id) {
             $user = $this->site->getUser();
             $warehouse_id = $user->warehouse_id;
         }
