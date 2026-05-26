@@ -234,6 +234,10 @@
 						
                         <p style="font-weight:bold;"><?= lang("payment_mode"); ?>: <?= $inv->payment_mode; ?></p>
 
+                        <p style="font-weight:bold;"><?= lang("payment_status"); ?>: <?= $inv->payment_status; ?></p>
+
+                        <p style="font-weight:bold;"><?= lang("payment_date"); ?>: <?= $inv->payment_date ? $this->sma->hrld($inv->payment_date) : '-'; ?></p>
+
                         <p style="font-weight:bold;"><?= lang("customer"); ?>: <?= $inv->customer; ?></p>
                         
                         <p style="font-weight:bold;"><?= lang("biller"); ?>: <?= $inv->biller; ?></p>

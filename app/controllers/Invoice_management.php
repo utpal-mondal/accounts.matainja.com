@@ -126,7 +126,7 @@ class Invoice_management extends MY_Controller
 
         $this->load->library('datatables');
 
-        $this->datatables->select("id, DATE_FORMAT(date, '%Y-%m-%d %T') as date, reference_no, biller, customer, currency, total_amount")->from('sma_invoices');
+        $this->datatables->select("id, DATE_FORMAT(date, '%Y-%m-%d %T') as date, reference_no, biller, customer, currency, total_amount, payment_status, payment_mode, DATE_FORMAT(payment_date, '%Y-%m-%d') as payment_date")->from('sma_invoice');
 
         //}
 
@@ -391,9 +391,13 @@ class Invoice_management extends MY_Controller
 	            $biller = $biller_details->company != '-' ? $biller_details->company : $biller_details->name;
 				
 				$currency = $this->input->post('currency');
-				
+
 				$payment_mode = $this->input->post('payment_mode');
-				
+
+				$payment_status = $this->input->post('payment_status');
+
+				$payment_date = $this->input->post('payment_date');
+
 				$total_amount = $this->input->post('total_amount');
 				
 				$total_gst_amount = $this->input->post('total_gst_amount');
@@ -441,6 +445,8 @@ class Invoice_management extends MY_Controller
 					'biller'=>$biller,
 					'currency'=>$currency,
 					'payment_mode' => $payment_mode,
+					'payment_status' => $payment_status,
+					'payment_date' => ($payment_status == 'paid' && $payment_date) ? $this->sma->fld($payment_date) : NULL,
 					'commision_fees'=>(isset($commision_fee_amount)&&$commision_fee_amount!='')?$commision_fee_amount:0,
 					'igst_percentage'=>(isset($igst_percentage)&&$igst_percentage!='')?$igst_percentage:0,
 					'sgst_percentage'=>(isset($sgst_percentage)&&$sgst_percentage!='')?$sgst_percentage:0,

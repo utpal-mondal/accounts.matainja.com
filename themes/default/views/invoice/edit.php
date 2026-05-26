@@ -202,6 +202,16 @@
 
         });
 
+        // Toggle payment_date visibility based on payment_status
+        $(document).on('change', '#slpayment_status', function() {
+            if ($(this).val() == 'paid') {
+                $('#payment_date_container').show();
+            } else {
+                $('#payment_date_container').hide();
+                $('#slpayment_date').val('');
+            }
+        });
+
     });
 
 </script>
@@ -422,7 +432,7 @@
                                      <div class="col-md-4">
               <div class="form-group">
                 <label><?= lang("payment_mode"); ?> *</label>
-                <?php 
+                <?php
 				$payment_mode = array(
 									''=>'Select Payment Mode',
 									'Wire-Transfer'=>'Wire Transfer',
@@ -431,6 +441,21 @@
 									'Digital-Wire'=>'Digital Wire'
 								);
 				echo form_dropdown('payment_mode', $payment_mode, (isset($_POST['payment_mode']) ? $_POST['payment_mode'] : $inv->payment_mode), 'id="slpayment_mode" class="form-control input-tip select" data-placeholder="' . lang("select") . ' ' . lang("payment_mode") . '" style="width:100%;" '); ?> </div>
+            </div>
+                                     <div class="col-md-4">
+              <div class="form-group">
+                <label><?= lang("payment_status"); ?></label>
+                <?php
+				$payment_status = array(
+									'pending'=>'Pending',
+									'paid'=>'Paid'
+								);
+				echo form_dropdown('payment_status', $payment_status, (isset($_POST['payment_status']) ? $_POST['payment_status'] : $inv->payment_status), 'id="slpayment_status" class="form-control input-tip select" data-placeholder="' . lang("select") . ' ' . lang("payment_status") . '" style="width:100%;" '); ?> </div>
+            </div>
+                                     <div class="col-md-4" id="payment_date_container" style="<?= $inv->payment_status == 'paid' ? '' : 'display:none;' ?>">
+              <div class="form-group">
+                <label><?= lang("payment_date"); ?></label>
+                <?php echo form_input('payment_date', (isset($_POST['payment_date']) ? $_POST['payment_date'] : ($inv->payment_date ? $this->sma->hrld($inv->payment_date) : '')), 'class="form-control input-tip datetime" id="slpayment_date"'); ?> </div>
             </div>
                                 </div>
                             </div>

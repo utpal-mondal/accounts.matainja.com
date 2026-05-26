@@ -31,7 +31,7 @@
             },
 
 
-            "aoColumns": [{"bSortable": false,"mRender": checkbox}, {"mRender": fld}, null, null, null, null, {"mRender": currencyFormat}, {"bSortable": false}],
+            "aoColumns": [{"bSortable": false,"mRender": checkbox}, {"mRender": fld}, null, null, null, null, {"mRender": currencyFormat}, null, null, {"mRender": function(data) { return data ? data : '-'; }}, {"bSortable": false}],
 
         "fnFooterCallback": function (nRow, aaData, iStart, iEnd, aiDisplay) {
 
@@ -61,8 +61,11 @@
             {column_number: 4, filter_default_label: "[<?=lang('customer');?>]", filter_type: "text", data: []},
 
             {column_number: 5, filter_default_label: "[<?=lang('list_currency');?>]", filter_type: "text", data: []},
+            {column_number: 7, filter_default_label: "[<?=lang('payment_status');?>]", filter_type: "text", data: []},
+            {column_number: 8, filter_default_label: "[<?=lang('payment_mode');?>]", filter_type: "text", data: []},
+            {column_number: 9, filter_default_label: "[<?=lang('payment_date');?>]", filter_type: "text", data: []},
 
-            {column_number: 7, filter_default_label: "[<?= lang("actions"); ?>]", filter_type: "text", data: []},
+            {column_number: 10, filter_default_label: "[<?= lang("actions"); ?>]", filter_type: "text", data: []},
 
         ], "footer");
 
@@ -538,9 +541,14 @@
                             <th><?= lang("customer"); ?></th>
 
                             <th><?= lang("list_currency"); ?></th>
-                            
+
                             <th><?= lang("total_amount"); ?></th>
-                           
+
+                            <th><?= lang("payment_status"); ?></th>
+
+                            <th><?= lang("payment_mode"); ?></th>
+
+                            <th><?= lang("payment_date"); ?></th>
 
                             <th style="width:80px; text-align:center;"><?= lang("actions"); ?></th>
 
@@ -567,6 +575,9 @@
                                 <input class="checkbox checkft" type="checkbox" name="check"/>
 
                             </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>

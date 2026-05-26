@@ -80,7 +80,11 @@
 
                         <?= lang('invoice_no'); ?>: <?= $inv->reference_no; ?><br>
 						
-                       <?= lang("payment_mode"); ?>: <?= $inv->payment_mode; ?>
+                       <?= lang("payment_mode"); ?>: <?= $inv->payment_mode; ?><br>
+
+                       <?= lang("payment_status"); ?>: <?= $inv->payment_status; ?><br>
+
+                       <?= lang("payment_date"); ?>: <?= $inv->payment_date ? $this->sma->hrld($inv->payment_date) : '-'; ?>
 
                         <div class="clearfix"></div>
 

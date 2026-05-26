@@ -18,7 +18,9 @@
 $lang['invoice_deleted'] = "Invoice Deleted Successfully"; 
 $lang['invoice_no'] = "Invoice No"; 
 $lang['commision_fee'] = "Commision Fee"; 
-$lang['payment_mode'] = "Payment Mode"; 
+$lang['payment_mode'] = "Payment Mode";
+$lang['payment_status'] = "Payment Status";
+$lang['payment_date'] = "Payment Date";
 $lang['invoice_management'] = "Invoice Management"; 
 $lang['invoice_copied'] = "Invoice Copied Successfully";
 $lang['declaration'] = "<p>Declaration:</p>";
