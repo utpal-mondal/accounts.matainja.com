@@ -202,13 +202,20 @@
 
         });
 
+        // Store original payment date from database
+        var originalPaymentDate = '<?= $inv->payment_date ? $this->sma->hrld($inv->payment_date) : ''; ?>';
+
         // Toggle payment_date visibility based on payment_status
         $(document).on('change', '#slpayment_status', function() {
             if ($(this).val() == 'paid') {
                 $('#payment_date_container').show();
+                // Restore original date if current value is empty
+                if ($('#slpayment_date').val() == '') {
+                    $('#slpayment_date').val(originalPaymentDate);
+                }
             } else {
                 $('#payment_date_container').hide();
-                $('#slpayment_date').val('');
+                // Don't clear the value, just hide it
             }
         });
 
@@ -470,18 +477,32 @@
                 <?php echo form_input('discount_amount', (isset($_POST['discount_amount']) ? $_POST['discount_amount'] : $inv->discount), 'class="form-control input-tip" id="discount_amount"'); ?> </div>
             </div>
 						<div class="col-md-4">
-                          <div class="form-group">
-                            <label><?= lang("commision_fee"); ?></label>
-                           <div style="padding:0px;" class="col-md-8"> 
-                            <?php 
-                            echo form_input('commision_fee', (isset($_POST['commision_fee']) ? $_POST['commision_fee'] : $inv->commision_fees), 'class="form-control input-tip" id="commision_fee"'); ?> 
-                            </div>
-                            <div class="col-md-4"> 
-                            <?php 
-                            echo form_input('commision_fee_percentage', (isset($_POST['commision_fee_percentage']) ? $_POST['commision_fee_percentage'] : ''), 'class="form-control input-tip" id="commision_fee_percentage"'); ?> 
-                            </div>
-                        </div>
-                        </div>
+    <div class="form-group">
+        <label><?= lang("commision_fee"); ?></label>
+
+        <div class="row">
+            <div class="col-md-8">
+                <?php
+                echo form_input(
+                    'commision_fee',
+                    (isset($_POST['commision_fee']) ? $_POST['commision_fee'] : $inv->commision_fees),
+                    'class="form-control input-tip" id="commision_fee" readonly'
+                );
+                ?>
+            </div>
+            
+            <div class="col-md-4">
+                <?php
+                echo form_input(
+                    'commision_fee_percentage',
+                    (isset($_POST['commision_fee_percentage']) ? $_POST['commision_fee_percentage'] : ''),
+                    'class="form-control input-tip" id="commision_fee_percentage"'
+                );
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
                         </div>
 
 
@@ -1496,7 +1517,7 @@
     
     </div><?php */?>
 <script type="text/javascript">
-
+$('.datetime').datetimepicker('setDate', new Date());
 function AddRow()
 {
 	var i=$('.hidden_class').val();

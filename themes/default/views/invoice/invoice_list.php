@@ -31,7 +31,7 @@
             },
 
 
-            "aoColumns": [{"bSortable": false,"mRender": checkbox}, {"mRender": fld}, null, null, null, null, {"mRender": currencyFormat}, null, null, {"mRender": function(data) { return data ? data : '-'; }}, {"bSortable": false}],
+            "aoColumns": [{"bSortable": false,"mRender": checkbox}, {"mRender": fld}, null, null, null, null, {"mRender": currencyFormat}, {"mRender": function(data) { var labelClass = data == 'paid' ? 'label-success' : 'label-warning'; return '<div class="text-center"><span class="payment_status label ' + labelClass + '">' + (data ? data : 'Pending') + '</span></div>'; }}, null, {"mRender": function(data) { return data ? data : '-'; }}, {"bSortable": false}],
 
         "fnFooterCallback": function (nRow, aaData, iStart, iEnd, aiDisplay) {
 

@@ -354,14 +354,21 @@ class Invoice_management extends MY_Controller
 		if($this->input->post()){
 
 			$this->form_validation->set_rules('customer', lang("customer"), 'required');
-		
+
 			$this->form_validation->set_rules('date', lang("date"), 'required');
-			
+
 			$this->form_validation->set_rules('biller', lang("biller"), 'required');
-			
+
 			$this->form_validation->set_rules('currency', lang("currency"), 'required');
 
 			$this->form_validation->set_rules('payment_mode', lang("payment_mode"), 'required');
+
+			$this->form_validation->set_rules('payment_status', lang("payment_status"), 'required');
+
+			// payment_date is required when payment_status is 'paid'
+			if ($this->input->post('payment_status') == 'paid') {
+				$this->form_validation->set_rules('payment_date', lang("payment_date"), 'required');
+			}
 
 			if ($this->form_validation->run() == true && $this->input->post('description')!='' && $this->input->post('amount')!='') 
 			{

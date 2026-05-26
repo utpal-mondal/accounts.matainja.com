@@ -31,6 +31,7 @@ class MY_Loader extends CI_Loader{
     public $reports_model;
     public $calendar;
     public $zend;
+    public $phpqrcode;
         
     function __construct()
     {

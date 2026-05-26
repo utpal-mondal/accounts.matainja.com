@@ -62,6 +62,7 @@ class MY_Controller extends CI_Controller {
     public $reports_model;
     public $calendar;
     public $zend;
+    public $phpqrcode;
     
     function __construct()
     {
