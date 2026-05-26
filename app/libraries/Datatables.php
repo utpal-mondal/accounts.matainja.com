@@ -41,6 +41,7 @@ class Datatables
     public function __construct()
     {
         $this->ci =& get_instance();
+        $this->distinct = '';
     }
 
     /**
