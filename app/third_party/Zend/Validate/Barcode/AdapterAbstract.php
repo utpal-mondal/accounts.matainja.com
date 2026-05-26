@@ -69,7 +69,7 @@ abstract class Zend_Validate_Barcode_AdapterAbstract
             return false;
         }
 
-        $fixum  = strlen($value);
+        $fixum  = strlen($value ?? '');
         $found  = false;
         $length = $this->getLength();
         if (is_array($length)) {
@@ -121,7 +121,7 @@ abstract class Zend_Validate_Barcode_AdapterAbstract
             }
         }
 
-        if (strlen($value) > 0) {
+        if (strlen($value ?? '') > 0) {
             return false;
         }
 
@@ -238,7 +238,7 @@ abstract class Zend_Validate_Barcode_AdapterAbstract
     {
         $barcode = substr($value, 0, -1);
         $sum     = 0;
-        $length  = strlen($value) - 2;
+        $length  = strlen($value ?? '') - 2;
 
         for ($i = 0; $i <= $length; $i++) {
             if (($i % 2) === 0) {

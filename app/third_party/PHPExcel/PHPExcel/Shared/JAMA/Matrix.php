@@ -482,7 +482,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 						$this->A[$i][$j] = trim($this->A[$i][$j],'"');
 						$validValues &= PHPExcel_Shared_String::convertToNumberIfFraction($this->A[$i][$j]);
 					}
-					if ((is_string($value)) && (strlen($value) > 0) && (!is_numeric($value))) {
+					if ((is_string($value)) && (strlen($value ?? '') > 0) && (!is_numeric($value))) {
 						$value = trim($value,'"');
 						$validValues &= PHPExcel_Shared_String::convertToNumberIfFraction($value);
 					}
@@ -568,7 +568,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 						$this->A[$i][$j] = trim($this->A[$i][$j],'"');
 						$validValues &= PHPExcel_Shared_String::convertToNumberIfFraction($this->A[$i][$j]);
 					}
-					if ((is_string($value)) && (strlen($value) > 0) && (!is_numeric($value))) {
+					if ((is_string($value)) && (strlen($value ?? '') > 0) && (!is_numeric($value))) {
 						$value = trim($value,'"');
 						$validValues &= PHPExcel_Shared_String::convertToNumberIfFraction($value);
 					}
@@ -656,7 +656,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 						$this->A[$i][$j] = trim($this->A[$i][$j],'"');
 						$validValues &= PHPExcel_Shared_String::convertToNumberIfFraction($this->A[$i][$j]);
 					}
-					if ((is_string($value)) && (strlen($value) > 0) && (!is_numeric($value))) {
+					if ((is_string($value)) && (strlen($value ?? '') > 0) && (!is_numeric($value))) {
 						$value = trim($value,'"');
 						$validValues &= PHPExcel_Shared_String::convertToNumberIfFraction($value);
 					}
@@ -707,7 +707,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 						$this->A[$i][$j] = trim($this->A[$i][$j],'"');
 						$validValues &= PHPExcel_Shared_String::convertToNumberIfFraction($this->A[$i][$j]);
 					}
-					if ((is_string($value)) && (strlen($value) > 0) && (!is_numeric($value))) {
+					if ((is_string($value)) && (strlen($value ?? '') > 0) && (!is_numeric($value))) {
 						$value = trim($value,'"');
 						$validValues &= PHPExcel_Shared_String::convertToNumberIfFraction($value);
 					}
@@ -964,7 +964,7 @@ class PHPExcel_Shared_JAMA_Matrix {
 						$this->A[$i][$j] = trim($this->A[$i][$j],'"');
 						$validValues &= PHPExcel_Shared_String::convertToNumberIfFraction($this->A[$i][$j]);
 					}
-					if ((is_string($value)) && (strlen($value) > 0) && (!is_numeric($value))) {
+					if ((is_string($value)) && (strlen($value ?? '') > 0) && (!is_numeric($value))) {
 						$value = trim($value,'"');
 						$validValues &= PHPExcel_Shared_String::convertToNumberIfFraction($value);
 					}

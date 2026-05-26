@@ -19,5 +19,6 @@
 .DS_Store
 Thumbs.db
 
-/writable/
 /public/uploads/
+
+assets/captcha/*

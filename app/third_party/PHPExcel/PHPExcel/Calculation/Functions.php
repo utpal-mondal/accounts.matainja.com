@@ -531,7 +531,7 @@ class PHPExcel_Calculation_Functions {
 				break;
 			case 'string'	:
 				//	Errors
-				if ((strlen($value) > 0) && ($value{0} == '#')) {
+				if ((strlen($value ?? '') > 0) && ($value{0} == '#')) {
 					return $value;
 				}
 				break;
@@ -580,7 +580,7 @@ class PHPExcel_Calculation_Functions {
 				return 64;
 		} elseif(is_string($value)) {
 			//	Errors
-			if ((strlen($value) > 0) && ($value{0} == '#')) {
+			if ((strlen($value ?? '') > 0) && ($value{0} == '#')) {
 				return 16;
 			}
 			return 2;

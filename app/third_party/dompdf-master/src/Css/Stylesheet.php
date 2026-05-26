@@ -878,7 +878,7 @@ class Stylesheet
                             break;
 
                         case "$=":
-                            $query .= "[substring(@$attr, string-length(@$attr)-" . (strlen($value) - 1) . ")=\"$value\"]";
+                            $query .= "[substring(@$attr, string-length(@$attr)-" . (strlen($value ?? '') - 1) . ")=\"$value\"]";
                             break;
 
                         case "^=":

@@ -109,7 +109,7 @@ class Zend_Validate_Barcode_Royalmail extends Zend_Validate_Barcode_AdapterAbstr
         if ($value[0] == '(') {
             $value = substr($value, 1);
 
-            if ($value[strlen($value) - 1] == ')') {
+            if ($value[strlen($value ?? '') - 1] == ')') {
                 $value = substr($value, 0, -1);
             } else {
                 return false;

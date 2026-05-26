@@ -234,7 +234,7 @@ abstract class Zend_Validate_Abstract implements Zend_Validate_Interface
         }
 
         if ($this->getObscureValue()) {
-            $value = str_repeat('*', strlen($value));
+            $value = str_repeat('*', strlen($value ?? ''));
         }
 
         $message = str_replace('%value%', $value, $message);

@@ -269,7 +269,7 @@ var $kerninfo;
 	}
 
 	function splice($stream, $offset, $value) {
-		return substr($stream,0,$offset) . $value . substr($stream,$offset+strlen($value));
+		return substr($stream,0,$offset) . $value . substr($stream,$offset+strlen($value ?? ''));
 	}
 
 	function _set_ushort($stream, $offset, $value) {

@@ -401,7 +401,7 @@ class PHPExcel_Calculation_TextData {
 		if ((function_exists('mb_substr')) && (function_exists('mb_strlen'))) {
 			return mb_substr($value, mb_strlen($value, 'UTF-8') - $chars, $chars, 'UTF-8');
 		} else {
-			return substr($value, strlen($value) - $chars);
+			return substr($value, strlen($value ?? '') - $chars);
 		}
 	}	//	function RIGHT()
 
@@ -422,7 +422,7 @@ class PHPExcel_Calculation_TextData {
 		if (function_exists('mb_strlen')) {
 			return mb_strlen($value, 'UTF-8');
 		} else {
-			return strlen($value);
+			return strlen($value ?? '');
 		}
 	}	//	function STRINGLENGTH()
 

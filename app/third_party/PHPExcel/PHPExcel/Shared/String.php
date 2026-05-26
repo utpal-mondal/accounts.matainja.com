@@ -558,7 +558,7 @@ class PHPExcel_Shared_String
 		}
 
 		// else strlen
-		return strlen($value);
+		return strlen($value ?? '');
 	}
 
 	/**

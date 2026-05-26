@@ -902,7 +902,7 @@ abstract class Zend_Barcode_Object_ObjectAbstract
         if ($value === null) {
             $value = $this->_text;
         }
-        if (!strlen($value)) {
+        if (!strlen($value ?? '')) {
             require_once 'Zend/Barcode/Object/Exception.php';
             throw new Zend_Barcode_Object_Exception(
                 'A text must be provide to Barcode before drawing'
