@@ -15,7 +15,7 @@ $(document).ready(function (e) {
             data: [],
             initSelection: function (element, callback) {
                 $.ajax({
-                    type: "get", async: false,
+                    type: "get", 
                     url: site.base_url+"customers/getCustomer/" + $(element).val(),
                     dataType: "json",
                     success: function (data) {

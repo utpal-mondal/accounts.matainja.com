@@ -26,7 +26,7 @@
 
         <?php } ?>
 
-        <?php if ($Owner || $Admin) { ?>
+        <?php if ($this->ion_auth->is_admin() || $this->ion_auth->is_owner()) { ?>
 
         $(document).on('change', '#sldate', function (e) {
 

@@ -1812,7 +1812,36 @@
 
                                     </ul>
                                 </li>
-                         
+
+                            <li class="mm_contacts <?= strtolower($this->router->fetch_method()) == 'settings' ? '' : 'mm_pos' ?>">
+
+                                <a class="dropmenu" href="#">
+
+                                    <i class="fa fa-envelope"></i>
+
+                                    <span class="text"> Contacts
+
+                                    </span> <span class="chevron closed"></span>
+
+                                </a>
+
+                                <ul>
+
+                                    <li id="contacts_index">
+
+                                        <a class="submenu" href="<?= site_url('contacts'); ?>">
+
+                                            <i class="fa fa-envelope"></i>
+
+                                            <span class="text"> List Contacts </span>
+
+                                        </a>
+
+                                    </li>
+
+                                </ul>
+
+                            </li>
 
 
                         <?php

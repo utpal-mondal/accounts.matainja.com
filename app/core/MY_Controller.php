@@ -65,6 +65,7 @@ class MY_Controller extends CI_Controller {
     public $phpqrcode;
     public $holiday_model;
     public $pr;
+    public $Contact_model;
     
     function __construct()
     {

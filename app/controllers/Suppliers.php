@@ -327,6 +327,10 @@ class Suppliers extends MY_Controller
     {
         // $this->sma->checkPermissions('index');
         $row = $this->companies_model->getCompanyByID($id);
+        if (!$row) {
+            $this->sma->send_json(array());
+            return;
+        }
         $this->sma->send_json(array(array('id' => $row->id, 'text' => $row->company)));
     }
 

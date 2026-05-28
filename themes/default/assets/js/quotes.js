@@ -54,7 +54,7 @@ if (site.settings.set_focus != 1) {
             data: [],
             initSelection: function (element, callback) {
                 $.ajax({
-                    type: "get", async: false,
+                    type: "get", 
                     url: site.base_url+"suppliers/getSupplier/" + $(element).val(),
                     dataType: "json",
                     success: function (data) {
@@ -188,7 +188,7 @@ if (site.settings.set_focus != 1) {
             data: [],
             initSelection: function (element, callback) {
                 $.ajax({
-                    type: "get", async: false,
+                    type: "get", 
                     url: site.base_url+"customers/getCustomer/" + $(element).val(),
                     dataType: "json",
                     success: function (data) {

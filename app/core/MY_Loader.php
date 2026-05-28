@@ -34,6 +34,7 @@ class MY_Loader extends CI_Loader{
     public $phpqrcode;
     public $holiday_model;
     public $pr;
+    public $Contact_model;
         
     function __construct()
     {

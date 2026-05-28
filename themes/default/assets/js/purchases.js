@@ -142,7 +142,7 @@ if (powarehouse = localStorage.getItem('powarehouse')) {
                 data: [],
                 initSelection: function (element, callback) {
                     $.ajax({
-                        type: "get", async: false,
+                        type: "get", 
                         url: site.base_url+"suppliers/getSupplier/" + $(element).val(),
                         dataType: "json",
                         success: function (data) {

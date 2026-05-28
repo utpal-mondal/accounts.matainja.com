@@ -27,6 +27,7 @@ class Contact_model extends CI_Model
 
     public function getAllContacts()
     {
+        $this->db->order_by('created_at', 'DESC');
         $q = $this->db->get('contacts');
         if ($q->num_rows() > 0) {
             foreach (($q->result()) as $row) {
