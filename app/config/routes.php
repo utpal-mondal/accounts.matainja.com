@@ -66,3 +66,4 @@ $route['sales/(:num)'] = 'sales/index/$1';
 $route['products/(:num)'] = 'products/index/$1';
 $route['purchases/(:num)'] = 'purchases/index/$1';
 $route['quotes/(:num)'] = 'quotes/index/$1';
+$route['api/contact/(:any)'] = 'api/contact/$1';
