@@ -457,9 +457,15 @@
 									'pending'=>'Pending',
 									'paid'=>'Paid'
 								);
-				echo form_dropdown('payment_status', $payment_status, (isset($_POST['payment_status']) ? $_POST['payment_status'] : $inv->payment_status), 'id="slpayment_status" class="form-control input-tip select" data-placeholder="' . lang("select") . ' ' . lang("payment_status") . '" style="width:100%;" '); ?> </div>
+                $selected_status = strtolower(trim($inv->payment_status));
+                if ($selected_status === 'paid') {
+                    $selected_status = 'paid';
+                } else {
+                    $selected_status = 'pending';
+                }                
+				echo form_dropdown('payment_status', $payment_status, (isset($_POST['payment_status']) ? $_POST['payment_status'] : $selected_status), 'id="slpayment_status" class="form-control input-tip select" data-placeholder="' . lang("select") . ' ' . lang("payment_status") . '" style="width:100%;" '); ?> </div>
             </div>
-                                     <div class="col-md-4" id="payment_date_container" style="<?= $inv->payment_status == 'paid' ? '' : 'display:none;' ?>">
+                                     <div class="col-md-4" id="payment_date_container" style="<?= $selected_status == 'paid' ? '' : 'display:none;' ?>">
               <div class="form-group">
                 <label><?= lang("payment_date"); ?></label>
                 <?php echo form_input('payment_date', (isset($_POST['payment_date']) ? $_POST['payment_date'] : ($inv->payment_date ? $this->sma->hrld($inv->payment_date) : '')), 'class="form-control input-tip datetime" id="slpayment_date"'); ?> </div>
