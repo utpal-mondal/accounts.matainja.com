@@ -465,6 +465,7 @@
                 }                
 				echo form_dropdown('payment_status', $payment_status, (isset($_POST['payment_status']) ? $_POST['payment_status'] : $selected_status), 'id="slpayment_status" class="form-control input-tip select" data-placeholder="' . lang("select") . ' ' . lang("payment_status") . '" style="width:100%;" '); ?> </div>
             </div>
+            <input class="hidden" value="<?= $inv->payment_status ?>" />
                                      <div class="col-md-4" id="payment_date_container" style="<?= $selected_status == 'paid' ? '' : 'display:none;' ?>">
               <div class="form-group">
                 <label><?= lang("payment_date"); ?></label>

@@ -808,13 +808,13 @@ class Quotes extends MY_Controller
                 $row->name = $item->product_name;
                 $row->type = $item->product_type;
                 $row->base_quantity = $item->quantity;
-                $row->base_unit = $row->unit ? $row->unit : $item->product_unit_id;
-                $row->base_unit_price = $row->price ? $row->price : $item->unit_price;
+                $row->base_unit = isset($row->unit) && $row->unit ? $row->unit : $item->product_unit_id;
+                $row->base_unit_price = isset($row->price) && $row->price ? $row->price : $item->unit_price;
                 $row->unit = $item->product_unit_id;
                 $row->qty = $item->unit_quantity;
                 $row->discount = $item->discount ? $item->discount : '0';
-                $row->price = $this->sma->formatDecimal($item->net_unit_price + $this->sma->formatDecimal($item->item_discount / $item->quantity));
-                $row->unit_price = $row->tax_method ? $item->unit_price + $this->sma->formatDecimal($item->item_discount / $item->quantity) + $this->sma->formatDecimal($item->item_tax / $item->quantity) : $item->unit_price + ($item->item_discount / $item->quantity);
+                $row->price = $this->sma->formatDecimal($item->net_unit_price + ($item->quantity > 0 ? $this->sma->formatDecimal($item->item_discount / $item->quantity) : 0));
+                $row->unit_price = $row->tax_method ? $item->unit_price + ($item->quantity > 0 ? $this->sma->formatDecimal($item->item_discount / $item->quantity) : 0) + ($item->quantity > 0 ? $this->sma->formatDecimal($item->item_tax / $item->quantity) : 0) : $item->unit_price + ($item->quantity > 0 ? ($item->item_discount / $item->quantity) : 0);
                 $row->real_unit_price = $item->real_unit_price;
                 $row->tax_rate = $item->tax_rate_id;
                 $row->option = $item->option_id;

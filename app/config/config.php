@@ -434,7 +434,7 @@ $config['csrf_token_name'] = 'token';
 $config['csrf_cookie_name'] = 'token_cookie';
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = FALSE;
-$config['csrf_exclude_uris'] = array('payments/paypalipn', 'payments/skrillipn', 'welcome/image_upload','Api/User/set_attendance','entry','Api/Login/user_login','Api/Login/syn_attendance','Api/Login/this_Month','Api/Login/month_Range','Api/Login/add_Leave','Api/Login/getleaveresult','Api/Login/prev_Month','Api/Login/get_leave','Api/Login/get_leavedetails','Api/Login/getleavetype','Api/Login/dailystaffattendancereport','Api/User/synuser','Api/Staff/get_attendance','Api/Staff/get_staff');
+$config['csrf_exclude_uris'] = array('payments/paypalipn', 'payments/skrillipn', 'welcome/image_upload','Api/User/set_attendance','entry','Api/Login/user_login','Api/Login/syn_attendance','Api/Login/this_Month','Api/Login/month_Range','Api/Login/add_Leave','Api/Login/getleaveresult','Api/Login/prev_Month','Api/Login/get_leave','Api/Login/get_leavedetails','Api/Login/getleavetype','Api/Login/dailystaffattendancereport','Api/User/synuser','Api/Staff/get_attendance','Api/Staff/get_staff','Api/Contact/index','Api/Contact/get_contact','Api/Contact/add_contact','Api/Contact/update_contact','Api/Contact/delete_contact');
 
 /*
 |--------------------------------------------------------------------------

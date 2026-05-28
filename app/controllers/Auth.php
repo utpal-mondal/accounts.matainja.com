@@ -153,6 +153,10 @@ class Auth extends MY_Controller
         $this->data['title'] = lang('profile');
 
         $user = $this->ion_auth->user($id)->row();
+        if (!$user) {
+            $this->session->set_flashdata('error', lang('user_not_found'));
+            redirect('auth/users');
+        }
         $groups = $this->ion_auth->groups()->result_array();
         $this->data['csrf'] = $this->_get_csrf_nonce();
         $this->data['user'] = $user;
@@ -803,6 +807,9 @@ class Auth extends MY_Controller
             redirect($_SERVER["HTTP_REFERER"]);
         }
 
+        $photo = NULL;
+        $user = $this->ion_auth->user($id)->row();
+
         //validate form input
         $this->form_validation->set_rules('avatar', lang("avatar"), 'trim');
 
@@ -813,8 +820,8 @@ class Auth extends MY_Controller
                 $this->load->library('upload');
 
                 $config['upload_path'] = 'assets/uploads/avatars';
-                $config['allowed_types'] = 'gif|jpg|jpeg|png|webp';
-                //$config['max_size'] = '500';
+                $config['allowed_types'] = 'gif|jpg|jpeg|png';
+                $config['max_size'] = '2048';
                 $config['max_width'] = $this->Settings->iwidth;
                 $config['max_height'] = $this->Settings->iheight;
                 $config['overwrite'] = FALSE;
@@ -832,30 +839,46 @@ class Auth extends MY_Controller
 
                 $photo = $this->upload->file_name;
 
-                $this->load->helper('file');
-                $this->load->library('image_lib');
-                $config['image_library'] = 'gd2';
-                $config['source_image'] = 'assets/uploads/avatars/' . $photo;
-                $config['new_image'] = 'assets/uploads/avatars/thumbs/' . $photo;
-                $config['maintain_ratio'] = TRUE;
-                $config['width'] = 150;
-                $config['height'] = 150;;
-
-                $this->image_lib->clear();
-                $this->image_lib->initialize($config);
-
-                if (!$this->image_lib->resize()) {
-                    echo $this->image_lib->display_errors();
+                // Ensure thumbs directory exists
+                if (!is_dir('assets/uploads/avatars/thumbs')) {
+                    mkdir('assets/uploads/avatars/thumbs', 0755, true);
                 }
-                $user = $this->ion_auth->user($id)->row();
+
+                // Create thumbnail using image_lib
+                if (extension_loaded('gd') && function_exists('gd_info')) {
+                    $this->load->helper('file');
+                    $this->load->library('image_lib');
+
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = 'assets/uploads/avatars/' . $photo;
+                    $config['new_image'] = 'assets/uploads/avatars/thumbs/' . $photo;
+                    $config['maintain_ratio'] = TRUE;
+                    $config['width'] = 150;
+                    $config['height'] = 150;
+
+                    $this->image_lib->clear();
+                    $this->image_lib->initialize($config);
+
+                    if (!$this->image_lib->resize()) {
+                        log_message('error', 'Thumbnail creation failed: ' . $this->image_lib->display_errors());
+                    }
+                } else {
+                    log_message('warning', 'GD library not available - skipping thumbnail creation');
+                }
             } else {
                 $this->form_validation->set_rules('avatar', lang("avatar"), 'required');
             }
         }
 
         if ($this->form_validation->run() == true && $this->auth_model->updateAvatar($id, $photo)) {
-            unlink('assets/uploads/avatars/' . $user->avatar);
-            unlink('assets/uploads/avatars/thumbs/' . $user->avatar);
+            if ($user && $user->avatar) {
+                if (file_exists('assets/uploads/avatars/' . $user->avatar)) {
+                    unlink('assets/uploads/avatars/' . $user->avatar);
+                }
+                if (file_exists('assets/uploads/avatars/thumbs/' . $user->avatar)) {
+                    unlink('assets/uploads/avatars/thumbs/' . $user->avatar);
+                }
+            }
             $this->session->set_userdata('avatar', $photo);
             $this->session->set_flashdata('message', lang("avatar_updated"));
             redirect("auth/profile/" . $id);

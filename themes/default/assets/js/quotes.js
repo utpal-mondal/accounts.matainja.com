@@ -1,4 +1,4 @@
-$(document).ready(function () {
+    $(document).ready(function () {
 $('body a, body button').attr('tabindex', -1);
 check_add_item_val();
 if (site.settings.set_focus != 1) {
@@ -155,18 +155,28 @@ if (site.settings.set_focus != 1) {
         $('#quwarehouse').select2("val", quwarehouse);
     }
 
-    $('#qunote').redactor('destroy');
-    $('#qunote').redactor({
-        buttons: ['formatting', '|', 'alignleft', 'aligncenter', 'alignright', 'justify', '|', 'bold', 'italic', 'underline', '|', 'unorderedlist', 'orderedlist', '|', 'link', '|', 'html'],
-        formattingTags: ['p', 'pre', 'h3', 'h4'],
-        minHeight: 100,
-        changeCallback: function (e) {
-            var v = this.get();
-            localStorage.setItem('qunote', v);
+    if ($.fn.redactor) {
+        $('#qunote').redactor('destroy');
+        $('#qunote').redactor({
+            buttons: ['formatting', '|', 'alignleft', 'aligncenter', 'alignright', 'justify', '|', 'bold', 'italic', 'underline', '|', 'unorderedlist', 'orderedlist', '|', 'link', '|', 'html'],
+            formattingTags: ['p', 'pre', 'h3', 'h4'],
+            minHeight: 100,
+            changeCallback: function (e) {
+                var v = this.get();
+                localStorage.setItem('qunote', v);
+            }
+        });
+        if (qunote = localStorage.getItem('qunote')) {
+            $('#qunote').redactor('set', qunote);
         }
-    });
-    if (qunote = localStorage.getItem('qunote')) {
-        $('#qunote').redactor('set', qunote);
+    } else {
+        // Fallback when redactor library is not loaded: use plain textarea
+        $('#qunote').on('change keyup', function () {
+            localStorage.setItem('qunote', $(this).val());
+        });
+        if (qunote = localStorage.getItem('qunote')) {
+            $('#qunote').val(qunote);
+        }
     }
     var $customer = $('#qucustomer');
     $customer.change(function (e) {
