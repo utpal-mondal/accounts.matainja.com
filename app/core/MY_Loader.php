@@ -33,6 +33,7 @@ class MY_Loader extends CI_Loader{
     public $zend;
     public $phpqrcode;
     public $holiday_model;
+    public $pr;
         
     function __construct()
     {

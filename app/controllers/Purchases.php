@@ -2,7 +2,6 @@
 
 class Purchases extends MY_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -565,6 +564,7 @@ class Purchases extends MY_Controller
                 $items = $this->purchases_model->getAllQuoteItems($quote_id);
                 krsort($items);
                 $c = rand(100000, 9999999);
+                $pr = array();
                 foreach ($items as $item) {
                     $row = $this->site->getProductByID($item->product_id);
                     if ($row->type == 'combo') {
@@ -926,8 +926,10 @@ class Purchases extends MY_Controller
             $inv_items = $this->purchases_model->getAllPurchaseItems($id);
             krsort($inv_items);
             $c = rand(100000, 9999999);
+            $pr = array();
             foreach ($inv_items as $item) {
                 $row = $this->site->getProductByID($item->product_id);
+                if (!$row) { continue; }
                 $row->expiry = (($item->expiry && $item->expiry != '0000-00-00') ? $this->sma->hrsd($item->expiry) : '');
                 $row->base_quantity = $item->quantity;
                 $row->base_unit = $row->unit ? $row->unit : $item->product_unit_id;
@@ -2192,8 +2194,10 @@ class Purchases extends MY_Controller
             $inv_items = $this->purchases_model->getAllPurchaseItems($id);
             krsort($inv_items);
             $c = rand(100000, 9999999);
+            $pr = array();
             foreach ($inv_items as $item) {
                 $row = $this->site->getProductByID($item->product_id);
+                if (!$row) { continue; }
                 $row->expiry = (($item->expiry && $item->expiry != '0000-00-00') ? $this->sma->hrsd($item->expiry) : '');
                 $row->base_quantity = $item->quantity;
                 $row->base_unit = $row->unit ? $row->unit : $item->product_unit_id;
