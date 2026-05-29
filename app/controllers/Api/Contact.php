@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Max-Age: 86400');    // cache for 1 day
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, api_key");
+header("Access-Control-Allow-Headers: Content-Type, X-API-KEY");
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
