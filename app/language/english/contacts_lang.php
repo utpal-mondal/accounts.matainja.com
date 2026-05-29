@@ -3,6 +3,7 @@
 $lang['contacts'] = 'Contacts';
 $lang['name'] = 'Name';
 $lang['email'] = 'Email';
+$lang['phone'] = 'Phone';
 $lang['subject'] = 'Subject';
 $lang['message'] = 'Message';
 $lang['created_at'] = 'Created At';

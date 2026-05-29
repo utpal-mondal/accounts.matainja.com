@@ -80,6 +80,7 @@ class Contact extends MY_Controller
         if ($api_key == $default_key || $key == $default_key) {
             $name = $this->input->get_post('name');
             $email = $this->input->get_post('email');
+            $phone = $this->input->get_post('phone');
             $subject = $this->input->get_post('subject');
             $message = $this->input->get_post('message');
 
@@ -87,6 +88,7 @@ class Contact extends MY_Controller
                 $data = array(
                     'name' => $name,
                     'email' => $email,
+                    'phone' => $phone,
                     'subject' => $subject,
                     'message' => $message
                 );

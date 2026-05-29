@@ -13,6 +13,7 @@
                                 <th>#</th>
                                 <th><?= lang('name'); ?></th>
                                 <th><?= lang('email'); ?></th>
+                                <th><?= lang('phone'); ?></th>
                                 <th><?= lang('subject'); ?></th>
                                 <th><?= lang('message'); ?></th>
                                 <th><?= lang('created_at'); ?></th>
@@ -25,6 +26,7 @@
                                     <td class="text-center"><?= $i; ?></td>
                                     <td class="text-center"><?= ucfirst($contact->name); ?></td>
                                     <td class="text-center"><?= $contact->email; ?></td>
+                                    <td class="text-center"><?= $contact->phone; ?></td>
                                     <td class="text-center"><?= $contact->subject; ?></td>
                                     <td class="text-center"><?= $contact->message; ?></td>
                                     <td class="text-center"><?= $contact->created_at; ?></td>
