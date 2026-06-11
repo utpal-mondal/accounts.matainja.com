@@ -26,7 +26,7 @@
 
         <?php } ?>
 
-        <?php if ($this->ion_auth->is_admin() || $this->ion_auth->is_owner()) { ?>
+        <?php if ($Owner || $Admin) { ?>
 
         $(document).on('change', '#sldate', function (e) {
 
@@ -451,7 +451,7 @@
             </div>
                                      <div class="col-md-4">
               <div class="form-group">
-                <label><?= lang("payment_status"); ?></label>
+                <label><?= lang("payment_status"); ?></label> ( <?= ucfirst($inv->payment_status) ?> )
                 <?php
 				$payment_status = array(
 									'pending'=>'Pending',
