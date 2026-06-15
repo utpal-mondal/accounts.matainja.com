@@ -1524,7 +1524,19 @@
     
     </div><?php */?>
 <script type="text/javascript">
-$('.datetime').datetimepicker('setDate', new Date());
+$(document).ready(function () {
+    $.fn.datetimepicker && $('.datetime').datetimepicker({
+        format: site.dateFormats.js_ldate,
+        fontAwesome: true,
+        language: 'sma',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0
+    });
+});
 function AddRow()
 {
 	var i=$('.hidden_class').val();
@@ -1937,9 +1949,12 @@ $(document).on('click','.fa.fa-clipboard.tip.pointer.sldel.msg',function(){
 $(document).on('click','.reset_detail',function(){
  $(this).closest('td').parent().children(':first-child').children().val('');
  $(this).closest('td').parent().children(':first-child').next().children().val('');
-  $(this).closest('td').parent().children(':first-child').next().next().children().val('');
-  $(this).closest('td').parent().children(':first-child').next().next().next().children().val('');
-  var  total_price = 0;
+ $(this).closest('td').parent().children(':first-child').next().next().children().val('');
+ $(this).closest('td').parent().children(':first-child').next().next().next().children().val('');
+	// $('#commision_fee').val('');
+	// $('#discount_amount').val('');
+	// $(this).closest('tr').remove();
+	var  total_price = 0;
 		$(".price_class").each(function() {
       if (!$(this).closest('td').parent().children(':first-child').next().next().next().children().val() == '') {
         total_price = total_price + parseFloat($(this).closest('td').parent().children(':first-child').next().next().next().children().val());
