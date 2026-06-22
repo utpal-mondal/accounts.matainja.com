@@ -877,7 +877,12 @@ class Auth_model extends CI_Model {
 
 
 
-        $this->db->update($this->tables['users'], $update, array($this->identity_column => $identity));
+        // Search by email if identity is an email, otherwise use identity column
+        if (filter_var($identity, FILTER_VALIDATE_EMAIL)) {
+            $this->db->update($this->tables['users'], $update, array('email' => $identity));
+        } else {
+            $this->db->update($this->tables['users'], $update, array($this->identity_column => $identity));
+        }
 
 
 
